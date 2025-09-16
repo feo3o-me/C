@@ -1,22 +1,31 @@
-#include <stdio.h>
+#include<stdio.h>
 
-// Exercise 1-20. Write a program detab that replaces tabs in the input with the proper number
-//  of blanks to space to the next tab stop.
+#define TAB 8 // WIN10 TERMINAL DEFAULT TAB SPACE
 
-void main()
+void main() 
 {
-	int contador = 0;
-	char input;
-	while ((input = getchar()) != EOF) // Ler Input
+	int input, counter = 0, space = 0;
+	while((input = getchar()) != EOF) 
 	{
-		if (input == '\t')
+		if(input == '\t') 
 		{
-			
+			space = (TAB - (counter % TAB));
+			while(space > 0)
+			{
+				putchar('*');
+				counter++;
+				space--;
+			}
 		}
 		else
-		{	
-			contador++;
+		{
 			putchar(input);
+			++counter;
 		}
+
+		if(input == '\n')
+		{
+			counter = 0;
+		}	
 	}
 }
